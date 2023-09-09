@@ -22,6 +22,10 @@ function App(): React.ReactElement {
 				<button id="session-decrement">v</button>
 				<button id="session-increment">^</button>
 			</div>
+			<div id="timer">
+				<div id="timer-label">Session</div>
+				<div id="time-left">{session_minutes}:{two_digit_seconds}</div>
+			</div>
 		</>
 	);
 }
