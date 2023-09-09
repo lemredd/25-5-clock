@@ -6,6 +6,7 @@ function App(): React.ReactElement {
 	const [break_minutes, set_break_minutes] = useState(5);
 	const [session_minutes, set_session_minutes] = useState(25);
 	const [seconds, set_seconds] = useState(0);
+	const two_digit_seconds = seconds >= 10 ? seconds : `0${seconds}`;
 
 	return (
 		<>
