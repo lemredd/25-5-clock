@@ -26,6 +26,10 @@ function App(): React.ReactElement {
 				<div id="timer-label">Session</div>
 				<div id="time-left">{session_minutes}:{two_digit_seconds}</div>
 			</div>
+			<div id="controls">
+				<button id="start_stop">start</button>
+				<button id="reset">reset</button>
+			</div>
 		</>
 	);
 }
