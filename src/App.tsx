@@ -16,14 +16,14 @@ function App(): React.ReactElement {
 
 	return (
 		<>
-			<div id="break-time">
-				<div id="break-label">Break Time</div>
+			<div id="break-timer">
+				<div id="break-label">Break Timer</div>
 				<div id="break-length">{break_minutes}</div>
 				<button id="break-decrement">v</button>
 				<button id="break-increment">^</button>
 			</div>
-			<div id="session-time">
-				<div id="session-label">Session Time</div>
+			<div id="session-timer">
+				<div id="session-label">Session Timer</div>
 				<div id="session-length">{session_minutes}</div>
 				<button id="session-decrement">v</button>
 				<button id="session-increment">^</button>
