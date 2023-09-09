@@ -8,6 +8,12 @@ function App(): React.ReactElement {
 	const [seconds, set_seconds] = useState(0);
 	const two_digit_seconds = seconds >= 10 ? seconds : `0${seconds}`;
 
+	function reset(): void {
+		set_break_minutes(5);
+		set_session_minutes(25);
+		set_seconds(0);
+	}
+
 	return (
 		<>
 			<div id="break-time">
@@ -28,7 +34,7 @@ function App(): React.ReactElement {
 			</div>
 			<div id="controls">
 				<button id="start_stop">start</button>
-				<button id="reset">reset</button>
+				<button id="reset" onClick={reset}>reset</button>
 			</div>
 		</>
 	);
