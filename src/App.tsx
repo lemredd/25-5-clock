@@ -24,6 +24,11 @@ function App(): React.ReactElement {
 				set_break_minutes(action === "decrement" ? (break_minutes - 1) : (break_minutes + 1));
 				break;
 			}
+			case "session": {
+				if (session_minutes === 1 && action === "decrement") return;
+				set_session_minutes(action === "decrement" ? (session_minutes - 1) : (session_minutes + 1));
+				break;
+			}
 		}
 	}
 
