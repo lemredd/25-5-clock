@@ -14,7 +14,10 @@ function App(): React.ReactElement {
 		set_seconds(0);
 	}
 
-	function mutate_minutes(action: "decrement" | "increment"): void {
+	function mutate_minutes(
+		state: "break" | "session",
+		action: "decrement" | "increment"
+	): void {
 		if (break_minutes === 1 && action === "decrement") return;
 		set_break_minutes(action === "decrement" ? (break_minutes - 1) : (break_minutes + 1));
 	}
