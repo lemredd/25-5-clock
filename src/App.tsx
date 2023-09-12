@@ -2,47 +2,52 @@ import { useState, useReducer } from "react";
 
 import "./App.css";
 
-	const [state, dispatch] = useReducer(store, INITIAL_STATES);
-	const [break_minutes, set_break_minutes] = useState(5);
-	const [session_minutes, set_session_minutes] = useState(25);
-	const [seconds, set_seconds] = useState(0);
-	const two_digit_seconds = seconds >= 10 ? seconds : `0${seconds}`;
 interface Action {
 	type: string
 }
 
-	function reset(): void {
-		set_break_minutes(5);
-		set_session_minutes(25);
-		set_seconds(0);
-	}
 const INITIAL_STATES: Record<string, number> = {
 	"break_minutes": 5,
 	"session_minutes": 25
 };
 
+function store(state: Record<string, number>, action: Action): Record<string, number> {
+	const MIN_THRESHOLD = 1;
+	const MAX_THRESHOLD = 60;
 
-	function mutate_minutes(
-		state: "break" | "session",
-		action: "decrement" | "increment"
-	): void {
-		const MIN_THRESHOLD = 1;
-		const MAX_THRESHOLD = 60;
-		switch (state) {
-			case "break": {
-				if (break_minutes === MIN_THRESHOLD && action === "decrement") return;
-				if (break_minutes >= MAX_THRESHOLD && action === "increment") return;
-				set_break_minutes(action === "decrement" ? (break_minutes - 1) : (break_minutes + 1));
-				break;
-			}
-			case "session": {
-				if (session_minutes === MIN_THRESHOLD && action === "decrement") return;
-				if (session_minutes >= MAX_THRESHOLD && action === "increment") return;
-				set_session_minutes(action === "decrement" ? (session_minutes - 1) : (session_minutes + 1));
-				break;
-			}
+	const do_nothing = (): typeof state => state;
+
+	switch(action.type) {
+		case "INCREMENT_BREAK_MINUTES": {
+			if (state.break_minutes >= MAX_THRESHOLD) return do_nothing();
+			return { ...state, "break_minutes": state.break_minutes + 1 };
+		}
+		case "DECREMENT_BREAK_MINUTES": {
+			if (state.break_minutes === MIN_THRESHOLD) return do_nothing();
+			return { ...state, "break_minutes": state.break_minutes - 1 };
+		}
+		case "INCREMENT_SESSION_MINUTES": {
+			if (state.session_minutes >= MAX_THRESHOLD) return do_nothing();
+			return { ...state, "session_minutes": state.session_minutes + 1 };
+		}
+		case "DECREMENT_SESSION_MINUTES": {
+			if (state.session_minutes === MIN_THRESHOLD) return do_nothing();
+			return { ...state, "session_minutes": state.session_minutes - 1 };
+		}
+		case "RESET_ALL": {
+			return INITIAL_STATES;
+		}
+
+		default: {
+			throw Error(`Unknown Action: ${action.type}`);
 		}
 	}
+}
+
+function App(): React.ReactElement {
+	const [state, dispatch] = useReducer(store, INITIAL_STATES);
+	const [seconds, set_seconds] = useState(0);
+	const two_digit_seconds = seconds >= 10 ? seconds : `0${seconds}`;
 
 	return (
 		<>
