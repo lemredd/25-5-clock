@@ -53,23 +53,23 @@ function App(): React.ReactElement {
 		<>
 			<div id="break-timer">
 				<div id="break-label">Break Timer</div>
-				<div id="break-length">{break_minutes}</div>
-				<button id="break-decrement" onClick={(): void => mutate_minutes("break", "decrement")}>v</button>
-				<button id="break-increment"onClick={(): void => mutate_minutes("break", "increment")}>^</button>
+				<div id="break-length">{state.break_minutes}</div>
+				<button id="break-decrement" onClick={(): void => dispatch({ "type": "DECREMENT_BREAK_MINUTES" })}>v</button>
+				<button id="break-increment"onClick={(): void => dispatch({ "type": "INCREMENT_BREAK_MINUTES" })}>^</button>
 			</div>
 			<div id="session-timer">
 				<div id="session-label">Session Timer</div>
-				<div id="session-length">{session_minutes}</div>
-				<button id="session-decrement" onClick={(): void => mutate_minutes("session", "decrement")}>v</button>
-				<button id="session-increment" onClick={(): void => mutate_minutes("session", "increment")}>^</button>
+				<div id="session-length">{state.session_minutes}</div>
+				<button id="session-decrement" onClick={(): void => dispatch({ "type": "DECREMENT_SESSION_MINUTES" })}>v</button>
+				<button id="session-increment" onClick={(): void => dispatch({ "type": "INCREMENT_SESSIOn_MINUTES" })}>^</button>
 			</div>
 			<div id="timer">
 				<div id="timer-label">Session</div>
-				<div id="time-left">{session_minutes}:{two_digit_seconds}</div>
+				<div id="time-left">{state.session_minutes}:{two_digit_seconds}</div>
 			</div>
 			<div id="controls">
 				<button id="start_stop">start</button>
-				<button id="reset" onClick={reset}>reset</button>
+				<button id="reset" onClick={(): void => dispatch({ "type": "RESET_ALL" })}>reset</button>
 			</div>
 		</>
 	);
