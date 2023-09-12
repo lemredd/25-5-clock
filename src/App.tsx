@@ -18,8 +18,13 @@ function App(): React.ReactElement {
 		state: "break" | "session",
 		action: "decrement" | "increment"
 	): void {
-		if (break_minutes === 1 && action === "decrement") return;
-		set_break_minutes(action === "decrement" ? (break_minutes - 1) : (break_minutes + 1));
+		switch (state) {
+			case "break": {
+				if (break_minutes === 1 && action === "decrement") return;
+				set_break_minutes(action === "decrement" ? (break_minutes - 1) : (break_minutes + 1));
+				break;
+			}
+		}
 	}
 
 	return (
