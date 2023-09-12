@@ -22,12 +22,14 @@ function App(): React.ReactElement {
 		const MAX_THRESHOLD = 60;
 		switch (state) {
 			case "break": {
-				if (break_minutes === 1 && action === "decrement") return;
+				if (break_minutes === MIN_THRESHOLD && action === "decrement") return;
+				if (break_minutes >= MAX_THRESHOLD && action === "increment") return;
 				set_break_minutes(action === "decrement" ? (break_minutes - 1) : (break_minutes + 1));
 				break;
 			}
 			case "session": {
-				if (session_minutes === 1 && action === "decrement") return;
+				if (session_minutes === MIN_THRESHOLD && action === "decrement") return;
+				if (session_minutes >= MAX_THRESHOLD && action === "increment") return;
 				set_session_minutes(action === "decrement" ? (session_minutes - 1) : (session_minutes + 1));
 				break;
 			}
