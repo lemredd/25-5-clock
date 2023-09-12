@@ -43,8 +43,8 @@ function App(): React.ReactElement {
 			<div id="session-timer">
 				<div id="session-label">Session Timer</div>
 				<div id="session-length">{session_minutes}</div>
-				<button id="session-decrement">v</button>
-				<button id="session-increment">^</button>
+				<button id="session-decrement" onClick={(): void => mutate_minutes("session", "decrement")}>v</button>
+				<button id="session-increment" onClick={(): void => mutate_minutes("session", "increment")}>^</button>
 			</div>
 			<div id="timer">
 				<div id="timer-label">Session</div>
