@@ -18,6 +18,8 @@ function App(): React.ReactElement {
 		state: "break" | "session",
 		action: "decrement" | "increment"
 	): void {
+		const MIN_THRESHOLD = 1;
+		const MAX_THRESHOLD = 60;
 		switch (state) {
 			case "break": {
 				if (break_minutes === 1 && action === "decrement") return;
