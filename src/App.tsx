@@ -2,11 +2,6 @@ import { useState, useReducer } from "react";
 
 import "./App.css";
 
-function App(): React.ReactElement {
-	const INITIAL_STATES: Record<string, number> = {
-		"break_minutes": 5,
-		"session_minutes": 25
-	};
 	const [state, dispatch] = useReducer(store, INITIAL_STATES);
 	const [break_minutes, set_break_minutes] = useState(5);
 	const [session_minutes, set_session_minutes] = useState(25);
@@ -21,6 +16,11 @@ interface Action {
 		set_session_minutes(25);
 		set_seconds(0);
 	}
+const INITIAL_STATES: Record<string, number> = {
+	"break_minutes": 5,
+	"session_minutes": 25
+};
+
 
 	function mutate_minutes(
 		state: "break" | "session",
