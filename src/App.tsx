@@ -3,6 +3,10 @@ import { useReducer } from "react";
 import "./App.css";
 
 function App(): React.ReactElement {
+	const INITIAL_STATES: Record<string, number> = {
+		"break_minutes": 5,
+		"session_minutes": 25
+	};
 	const [state, dispatch] = useReducer(store, INITIAL_STATES);
 	const [break_minutes, set_break_minutes] = useState(5);
 	const [session_minutes, set_session_minutes] = useState(25);
