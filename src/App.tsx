@@ -32,8 +32,8 @@ function App(): React.ReactElement {
 			<div id="break-timer">
 				<div id="break-label">Break Timer</div>
 				<div id="break-length">{break_minutes}</div>
-				<button id="break-decrement" onClick={(): void => mutate_minutes("decrement")}>v</button>
-				<button id="break-increment"onClick={(): void => mutate_minutes("increment")}>^</button>
+				<button id="break-decrement" onClick={(): void => mutate_minutes("break", "decrement")}>v</button>
+				<button id="break-increment"onClick={(): void => mutate_minutes("break", "increment")}>^</button>
 			</div>
 			<div id="session-timer">
 				<div id="session-label">Session Timer</div>
