@@ -54,6 +54,9 @@ function store(state: State, action: Action): State {
 			if (state.session_minutes === MIN_THRESHOLD) return do_nothing();
 			return { ...state, "session_minutes": state.session_minutes - 1 };
 		}
+		case "PLAY": return { ...state, "timer_status": "playing" };
+		case "PAUSE": return { ...state, "timer_status": "paused" };
+		case "SWITCH_TIMER": return { ...state, "timer_playing": state.timer_playing === "session" ? "break" : "session" };
 		case "RESET_ALL": {
 			return INITIAL_STATES;
 		}
