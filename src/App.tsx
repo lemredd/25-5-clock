@@ -91,7 +91,12 @@ function App(): React.ReactElement {
 				<div id="time-left">{state.session_minutes}:{two_digit_seconds}</div>
 			</div>
 			<div id="controls">
-				<button id="start_stop">start</button>
+				<button
+					id="start_stop"
+					onClick={(): void => dispatch({ "type": state.timer_status === "paused" ? "PLAY" : "PAUSE" })}
+				>
+					{ state.timer_status === "playing" ? "stop" : "start" }
+				</button>
 				<button id="reset" onClick={(): void => dispatch({ "type": "RESET_ALL" })}>reset</button>
 			</div>
 		</>
