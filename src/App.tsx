@@ -21,11 +21,14 @@ interface State {
 	timer_playing: "break" | "session"
 }
 
+const INITIAL_STATES: State = {
 	"break_minutes": 5,
-	"session_minutes": 25
+	"session_minutes": 25,
+	"timer_status": "paused",
+	"timer_playing": "session"
 };
 
-function store(state: Record<string, number>, action: Action): Record<string, number> {
+function store(state: State, action: Action): State {
 	const MIN_THRESHOLD = 1;
 	const MAX_THRESHOLD = 60;
 
@@ -75,7 +78,7 @@ function App(): React.ReactElement {
 				<div id="session-label">Session Timer</div>
 				<div id="session-length">{state.session_minutes}</div>
 				<button id="session-decrement" onClick={(): void => dispatch({ "type": "DECREMENT_SESSION_MINUTES" })}>v</button>
-				<button id="session-increment" onClick={(): void => dispatch({ "type": "INCREMENT_SESSIOn_MINUTES" })}>^</button>
+				<button id="session-increment" onClick={(): void => dispatch({ "type": "INCREMENT_SESSION_MINUTES" })}>^</button>
 			</div>
 			<div id="timer">
 				<div id="timer-label">Session</div>
