@@ -14,7 +14,13 @@ interface Action {
 	type: typeof ACTION_TYPES[number]
 }
 
-const INITIAL_STATES: Record<string, number> = {
+interface State {
+	break_minutes: number
+	session_minutes: number
+	timer_status: "paused" | "playing"
+	timer_playing: "break" | "session"
+}
+
 	"break_minutes": 5,
 	"session_minutes": 25
 };
