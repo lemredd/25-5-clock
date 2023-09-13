@@ -2,8 +2,16 @@ import { useState, useReducer } from "react";
 
 import "./App.css";
 
+const ACTION_TYPES = [
+	"INCREMENT_BREAK_MINUTES",
+	"DECREMENT_BREAK_MINUTES",
+	"INCREMENT_SESSION_MINUTES",
+	"DECREMENT_SESSION_MINUTES",
+	"RESET_ALL"
+] as const;
+
 interface Action {
-	type: string
+	type: typeof ACTION_TYPES[number]
 }
 
 const INITIAL_STATES: Record<string, number> = {
@@ -39,7 +47,7 @@ function store(state: Record<string, number>, action: Action): Record<string, nu
 		}
 
 		default: {
-			throw Error(`Unknown Action: ${action.type}`);
+			throw Error(`Unknown Action: ${String(action.type)}`);
 		}
 	}
 }
