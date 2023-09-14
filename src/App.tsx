@@ -23,6 +23,7 @@ interface State extends Record<string, any> {
 	session_minutes: number
 	timer_status: "paused" | "playing"
 	timer_playing: "break" | "session"
+	running_minutes: number | undefined
 	seconds: number
 }
 
@@ -31,6 +32,7 @@ const INITIAL_STATES = {
 	"session_minutes": 25,
 	"timer_status": "paused",
 	"timer_playing": "session",
+	"running_minutes": undefined,
 	"seconds": 0
 } satisfies State;
 
