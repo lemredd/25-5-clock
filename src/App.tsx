@@ -60,6 +60,7 @@ function store(state: State, action: Action): State {
 		case "PLAY": return { ...state, "timer_status": "playing" };
 		case "PAUSE": return { ...state, "timer_status": "paused" };
 		case "SWITCH_TIMER": return { ...state, "timer_playing": state.timer_playing === "session" ? "break" : "session" };
+		case "DECREMENT_SECONDS": return { ...state, "seconds": state.seconds === 0 ? 59 : state.seconds - 1 };
 		case "RESET_ALL": {
 			return INITIAL_STATES;
 		}
