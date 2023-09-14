@@ -1,4 +1,4 @@
-import { useState, useReducer } from "react";
+import { useState, useReducer, useEffect } from "react";
 
 import "./App.css";
 
@@ -71,6 +71,13 @@ function App(): React.ReactElement {
 	const [state, dispatch] = useReducer(store, INITIAL_STATES);
 	const [seconds, set_seconds] = useState(0);
 	const two_digit_seconds = seconds >= 10 ? seconds : `0${seconds}`;
+
+	useEffect(() => {
+		const reduce_seconds = (seconds: number): number => seconds === 0 ? 59 : seconds - 1;
+		const count_down = setInterval(() => set_seconds(reduce_seconds), 1000);
+
+		return () => clearInterval(count_down);
+	}, [state.timer_playing]);
 
 	return (
 		<>
