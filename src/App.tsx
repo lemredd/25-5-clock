@@ -38,7 +38,7 @@ function store(state: State, action: Action): State {
 	const MIN_THRESHOLD = 1;
 	const MAX_THRESHOLD = 60;
 
-	const do_nothing = (): typeof state => state;
+	const do_nothing = (): State => state;
 
 	switch(action.type) {
 		case "INCREMENT_BREAK_MINUTES": {
@@ -72,42 +72,45 @@ function store(state: State, action: Action): State {
 }
 
 function App(): React.ReactElement {
-	const [state, dispatch] = useReducer(store, INITIAL_STATES);
-	const two_digit_seconds = state.seconds >= 10 ? state.seconds : `0${state.seconds}`;
+	const [
+		{ break_minutes, session_minutes, seconds, timer_status },
+		dispatch
+	] = useReducer(store, INITIAL_STATES);
+	const two_digit_seconds = seconds >= 10 ? seconds : `0${seconds}`;
 
 	useEffect(() => {
 		let count_down: NodeJS.Timer;
 		
-		if (state.timer_status === "playing")
+		if (timer_status === "playing")
 			count_down = setInterval(() => dispatch({ "type": "DECREMENT_SECONDS" }), 1000);
 
 		return () => clearInterval(count_down);
-	}, [state.timer_status]);
+	}, [timer_status]);
 
 	return (
 		<>
 			<div id="break-timer">
 				<div id="break-label">Break Timer</div>
-				<div id="break-length">{state.break_minutes}</div>
+				<div id="break-length">{break_minutes}</div>
 				<button id="break-decrement" onClick={(): void => dispatch({ "type": "DECREMENT_BREAK_MINUTES" })}>v</button>
 				<button id="break-increment"onClick={(): void => dispatch({ "type": "INCREMENT_BREAK_MINUTES" })}>^</button>
 			</div>
 			<div id="session-timer">
 				<div id="session-label">Session Timer</div>
-				<div id="session-length">{state.session_minutes}</div>
+				<div id="session-length">{session_minutes}</div>
 				<button id="session-decrement" onClick={(): void => dispatch({ "type": "DECREMENT_SESSION_MINUTES" })}>v</button>
 				<button id="session-increment" onClick={(): void => dispatch({ "type": "INCREMENT_SESSION_MINUTES" })}>^</button>
 			</div>
 			<div id="timer">
 				<div id="timer-label">Session</div>
-				<div id="time-left">{state.session_minutes}:{two_digit_seconds}</div>
+				<div id="time-left">{session_minutes}:{two_digit_seconds}</div>
 			</div>
 			<div id="controls">
 				<button
 					id="start_stop"
-					onClick={(): void => dispatch({ "type": state.timer_status === "paused" ? "PLAY" : "PAUSE" })}
+					onClick={(): void => dispatch({ "type": timer_status === "paused" ? "PLAY" : "PAUSE" })}
 				>
-					{ state.timer_status === "playing" ? "stop" : "start" }
+					{ timer_status === "playing" ? "stop" : "start" }
 				</button>
 				<button id="reset" onClick={(): void => dispatch({ "type": "RESET_ALL" })}>reset</button>
 			</div>
