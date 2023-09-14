@@ -26,12 +26,13 @@ interface State {
 	seconds: number
 }
 
-const INITIAL_STATES: State = {
+const INITIAL_STATES = {
 	"break_minutes": 5,
 	"session_minutes": 25,
 	"timer_status": "paused",
-	"timer_playing": "session"
-};
+	"timer_playing": "session",
+	"seconds": 0
+} satisfies State;
 
 function store(state: State, action: Action): State {
 	const MIN_THRESHOLD = 1;
