@@ -73,11 +73,13 @@ function App(): React.ReactElement {
 	const two_digit_seconds = seconds >= 10 ? seconds : `0${seconds}`;
 
 	useEffect(() => {
+		let count_down: NodeJS.Timer;
 		const reduce_seconds = (seconds: number): number => seconds === 0 ? 59 : seconds - 1;
-		const count_down = setInterval(() => set_seconds(reduce_seconds), 1000);
+		
+		if (state.timer_status === "playing") count_down = setInterval(() => set_seconds(reduce_seconds), 1000);
 
 		return () => clearInterval(count_down);
-	}, [state.timer_playing]);
+	}, [state.timer_status]);
 
 	return (
 		<>
