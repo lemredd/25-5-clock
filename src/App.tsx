@@ -18,7 +18,7 @@ interface Action {
 	type: typeof ACTION_TYPES[number]
 }
 
-interface State {
+interface State extends Record<string, any> {
 	break_minutes: number
 	session_minutes: number
 	timer_status: "paused" | "playing"
