@@ -23,6 +23,7 @@ interface State {
 	session_minutes: number
 	timer_status: "paused" | "playing"
 	timer_playing: "break" | "session"
+	seconds: number
 }
 
 const INITIAL_STATES: State = {
