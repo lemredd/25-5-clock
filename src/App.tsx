@@ -79,7 +79,11 @@ function store(state: State, action: Action): State {
 
 function App(): React.ReactElement {
 	const [
-		{ break_minutes, session_minutes, seconds, timer_status },
+		{
+			break_minutes, session_minutes,
+			running_minutes, seconds,
+			timer_status
+		},
 		dispatch
 	] = useReducer(store, INITIAL_STATES);
 	const two_digit_seconds = seconds >= 10 ? seconds : `0${seconds}`;
@@ -109,7 +113,7 @@ function App(): React.ReactElement {
 			</div>
 			<div id="timer">
 				<div id="timer-label">Session</div>
-				<div id="time-left">{session_minutes}:{two_digit_seconds}</div>
+				<div id="time-left">{running_minutes ?? session_minutes}:{two_digit_seconds}</div>
 			</div>
 			<div id="controls">
 				<button
