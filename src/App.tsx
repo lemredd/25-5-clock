@@ -10,6 +10,7 @@ const ACTION_TYPES = [
 	"PLAY",
 	"PAUSE",
 	"SWITCH_TIMER",
+	"DECREMENT_SECONDS",
 	"RESET_ALL"
 ] as const;
 
