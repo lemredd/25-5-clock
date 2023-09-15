@@ -67,20 +67,11 @@ function store(state: State, action: Action): State {
 		};
 		case "PAUSE": return { ...state, "timer_status": "paused" };
 		case "SWITCH_TIMER": return { ...state, "timer_playing": state.timer_playing === "session" ? "break" : "session" };
-		case "DECREMENT_SECONDS": {
-			const decremented_seconds_state = { ...state, "seconds": state.seconds === 0 ? 59 : state.seconds - 1 };
-			
-			// TODO: `DECREMENT_RUNNING_MINUTES`
-			if (state.seconds === 0) return { ...decremented_seconds_state, "running_minutes": state.running_minutes! - 1 };
-			return decremented_seconds_state;
-		}
-		case "RESET_ALL": {
-			return INITIAL_STATES;
-		}
+		case "DECREMENT_RUNNING_MINUTES": return { ...state, "running_minutes": state.running_minutes! - 1 };
+		case "DECREMENT_SECONDS": return { ...state, "seconds": state.seconds === 0 ? 59 : state.seconds - 1 };
+		case "RESET_ALL": return INITIAL_STATES;
 
-		default: {
-			throw Error(`Unknown Action: ${String(action.type)}`);
-		}
+		default: throw Error(`Unknown Action: ${String(action.type)}`);
 	}
 }
 
@@ -103,6 +94,13 @@ function App(): React.ReactElement {
 
 		return () => clearInterval(count_down);
 	}, [timer_status]);
+
+	useEffect(() => {
+		if (isNaN(running_minutes as number)) return;
+		
+		if (seconds === 59) dispatch({ "type": "DECREMENT_RUNNING_MINUTES" });
+		
+	}, [seconds]); // eslint-disable-line react-hooks/exhaustive-deps
 
 	return (
 		<>
