@@ -69,6 +69,7 @@ function store(state: State, action: Action): State {
 		case "DECREMENT_SECONDS": {
 			const decremented_seconds_state = { ...state, "seconds": state.seconds === 0 ? 59 : state.seconds - 1 };
 			
+			// TODO: `DECREMENT_RUNNING_MINUTES`
 			if (state.seconds === 0) return { ...decremented_seconds_state, "running_minutes": state.running_minutes! - 1 };
 			return decremented_seconds_state;
 		}
