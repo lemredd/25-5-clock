@@ -66,7 +66,12 @@ function store(state: State, action: Action): State {
 		};
 		case "PAUSE": return { ...state, "timer_status": "paused" };
 		case "SWITCH_TIMER": return { ...state, "timer_playing": state.timer_playing === "session" ? "break" : "session" };
-		case "DECREMENT_SECONDS": return { ...state, "seconds": state.seconds === 0 ? 59 : state.seconds - 1 };
+		case "DECREMENT_SECONDS": {
+			const decremented_seconds_state = { ...state, "seconds": state.seconds === 0 ? 59 : state.seconds - 1 };
+			
+			if (state.seconds === 0) return { ...decremented_seconds_state, "running_minutes": state.running_minutes! - 1 };
+			return decremented_seconds_state;
+		}
 		case "RESET_ALL": {
 			return INITIAL_STATES;
 		}
