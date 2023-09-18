@@ -84,7 +84,8 @@ function App(): React.ReactElement {
 		},
 		dispatch
 	] = useReducer(store, INITIAL_STATES);
-	const two_digit_seconds = seconds >= 10 ? seconds : `0${seconds}`;
+	const format_to_two_digits =
+		(number_to_format: number): number | string => number_to_format >= 10 ? number_to_format : `0${number_to_format}`;
 
 	useEffect(() => {
 		let count_down: NodeJS.Timer;
