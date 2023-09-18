@@ -2,6 +2,8 @@ import { useReducer, useEffect } from "react";
 
 import "./App.css";
 
+import alarm from "/alarm.wav";
+
 const ACTION_TYPES = [
 	"INCREMENT_BREAK_MINUTES",
 	"DECREMENT_BREAK_MINUTES",
@@ -141,6 +143,7 @@ function App(): React.ReactElement {
 				</button>
 				<button id="reset" onClick={(): void => dispatch({ "type": "RESET_ALL" })}>reset</button>
 			</div>
+			<audio id="alarm" preload="auto" src={alarm} />
 		</>
 	);
 }
