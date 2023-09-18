@@ -46,6 +46,7 @@ function store(state: State, action: Action): State {
 	function decrement_seconds(): State {
 		const is_timer_done = state.running_minutes === 0 && state.seconds === 0;
 		const is_playing_session = state.timer_playing === "session";
+		const countdown_state = { ...state, "seconds": state.seconds === 0 ? 59 : state.seconds - 1 };
 	}
 
 	switch(action.type) {
