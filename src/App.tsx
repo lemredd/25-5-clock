@@ -47,6 +47,13 @@ function store(state: State, action: Action): State {
 		const is_timer_done = state.running_minutes === 0 && state.seconds === 0;
 		const is_playing_session = state.timer_playing === "session";
 		const countdown_state = { ...state, "seconds": state.seconds === 0 ? 59 : state.seconds - 1 };
+		const switch_timer_state = {
+			...state,
+			"seconds": 0,
+			"timer_playing": is_playing_session ? "break" : "session",
+			"running_minutes": is_playing_session ? state.break_minutes : state.session_minutes
+		} satisfies State;
+
 	}
 
 	switch(action.type) {
