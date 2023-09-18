@@ -44,6 +44,7 @@ function store(state: State, action: Action): State {
 	const do_nothing = (): State => state;
 
 	function decrement_seconds(): State {
+		const is_timer_done = state.running_minutes === 0 && state.seconds === 0;
 	}
 
 	switch(action.type) {
