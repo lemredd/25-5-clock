@@ -119,7 +119,7 @@ function App(): React.ReactElement {
 			</div>
 			<div id="timer">
 				<div id="timer-label">Session</div>
-				<div id="time-left">{running_minutes ?? session_minutes}:{two_digit_seconds}</div>
+				<div id="time-left">{format_to_two_digits(running_minutes ?? session_minutes)}:{format_to_two_digits(seconds)}</div>
 			</div>
 			<div id="controls">
 				<button
