@@ -43,6 +43,9 @@ function store(state: State, action: Action): State {
 
 	const do_nothing = (): State => state;
 
+	function decrement_seconds(): State {
+	}
+
 	switch(action.type) {
 		case "INCREMENT_BREAK_MINUTES": {
 			if (state.break_minutes >= MAX_THRESHOLD) return do_nothing();
@@ -66,9 +69,8 @@ function store(state: State, action: Action): State {
 			"running_minutes": state.running_minutes ?? state[`${state.timer_playing}_minutes`]
 		};
 		case "PAUSE": return { ...state, "timer_status": "paused" };
-		case "SWITCH_TIMER": return { ...state, "timer_playing": state.timer_playing === "session" ? "break" : "session" };
 		case "DECREMENT_RUNNING_MINUTES": return { ...state, "running_minutes": state.running_minutes! - 1 };
-		case "DECREMENT_SECONDS": return { ...state, "seconds": state.seconds === 0 ? 59 : state.seconds - 1 };
+		case "DECREMENT_SECONDS": return decrement_seconds();
 		case "RESET_ALL": return INITIAL_STATES;
 
 		default: throw Error(`Unknown Action: ${String(action.type)}`);
