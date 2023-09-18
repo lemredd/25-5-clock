@@ -54,6 +54,8 @@ function store(state: State, action: Action): State {
 			"running_minutes": is_playing_session ? state.break_minutes : state.session_minutes
 		} satisfies State;
 
+		if (is_timer_done) return switch_timer_state;
+		return countdown_state;
 	}
 
 	switch(action.type) {
@@ -109,10 +111,7 @@ function App(): React.ReactElement {
 	}, [timer_status]);
 
 	useEffect(() => {
-		if (isNaN(running_minutes as number)) return;
-		
 		if (seconds === 59) dispatch({ "type": "DECREMENT_RUNNING_MINUTES" });
-		
 	}, [seconds]); // eslint-disable-line react-hooks/exhaustive-deps
 
 	return (
