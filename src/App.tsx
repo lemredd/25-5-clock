@@ -56,7 +56,12 @@ function store(state: State, action: Action): State {
 			"running_minutes": is_playing_session ? state.break_minutes : state.session_minutes
 		} satisfies State;
 
-		if (is_timer_done) return switch_timer_state;
+		if (is_timer_done) {
+			const alarm_audio = document.getElementById("beep") as HTMLAudioElement;
+			alarm_audio.currentTime = 0;
+			alarm_audio.play().catch(console.error);
+			return switch_timer_state;
+		}
 		return countdown_state;
 	}
 
@@ -96,7 +101,7 @@ function App(): React.ReactElement {
 		{
 			break_minutes, session_minutes,
 			running_minutes, seconds,
-			timer_status
+			timer_status, timer_playing
 		},
 		dispatch
 	] = useReducer(store, INITIAL_STATES);
@@ -131,7 +136,7 @@ function App(): React.ReactElement {
 				<button id="session-increment" onClick={(): void => dispatch({ "type": "INCREMENT_SESSION_MINUTES" })}>^</button>
 			</div>
 			<div id="timer">
-				<div id="timer-label">Session</div>
+				<div id="timer-label">{timer_playing[0].toLocaleUpperCase() + timer_playing.substring(1)}</div>
 				<div id="time-left">{format_to_two_digits(running_minutes ?? session_minutes)}:{format_to_two_digits(seconds)}</div>
 			</div>
 			<div id="controls">
@@ -143,7 +148,7 @@ function App(): React.ReactElement {
 				</button>
 				<button id="reset" onClick={(): void => dispatch({ "type": "RESET_ALL" })}>reset</button>
 			</div>
-			<audio id="alarm" preload="auto" src={alarm} />
+			<audio id="beep" preload="auto" src={alarm} />
 		</>
 	);
 }
