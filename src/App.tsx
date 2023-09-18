@@ -90,7 +90,12 @@ function store(state: State, action: Action): State {
 		case "PAUSE": return { ...state, "timer_status": "paused" };
 		case "DECREMENT_RUNNING_MINUTES": return { ...state, "running_minutes": state.running_minutes! - 1 };
 		case "DECREMENT_SECONDS": return decrement_seconds();
-		case "RESET_ALL": return INITIAL_STATES;
+		case "RESET_ALL": {
+			const alarm_audio = document.getElementById("beep") as HTMLAudioElement;
+			alarm_audio.currentTime = 0;
+			alarm_audio.pause();
+			return INITIAL_STATES;
+		}
 
 		default: throw Error(`Unknown Action: ${String(action.type)}`);
 	}
