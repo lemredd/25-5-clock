@@ -1,23 +1,10 @@
 import { useReducer, useEffect } from "react";
 
-import { ACTION_TYPES } from "./constants";
+import { Action, State } from "./types.ts";
 
 import "./App.css";
 
 import alarm from "/alarm.wav";
-
-interface Action {
-	type: typeof ACTION_TYPES[number]
-}
-
-interface State extends Record<string, any> {
-	break_minutes: number
-	session_minutes: number
-	timer_status: "paused" | "playing"
-	timer_playing: "break" | "session"
-	running_minutes: number | undefined
-	seconds: number
-}
 
 const INITIAL_STATES = {
 	"break_minutes": 5,
