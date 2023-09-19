@@ -1,19 +1,13 @@
 import { useReducer, useEffect } from "react";
 
-import { Action, State } from "./types.ts";
+import type { Action, State } from "./types.ts";
+
+import { INITIAL_STATES } from "./constants";
 
 import "./App.css";
 
 import alarm from "/alarm.wav";
 
-const INITIAL_STATES = {
-	"break_minutes": 5,
-	"session_minutes": 25,
-	"timer_status": "paused",
-	"timer_playing": "session",
-	"running_minutes": undefined,
-	"seconds": 0
-} satisfies State;
 
 function store(state: State, action: Action): State {
 	const MIN_THRESHOLD = 1;
