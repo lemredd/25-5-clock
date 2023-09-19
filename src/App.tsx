@@ -6,6 +6,8 @@ import { INITIAL_STATES } from "./constants";
 
 import store from "./store.ts";
 
+import TimerController from "./components/TimerController.tsx";
+
 import "./App.css";
 
 import alarm from "/alarm.wav";
@@ -25,29 +27,6 @@ function useTimerWatcher(timer_status: string, seconds: number, dispatch: React.
 		if (seconds === 59) dispatch({ "type": "DECREMENT_RUNNING_MINUTES" });
 	}, [seconds]);
 	/* eslint-enable react-hooks/exhaustive-deps */
-}
-
-interface TimerControllerProps {
-	type: "break" | "session"
-	minutes: number
-	on_decrement: (action: Action) => void
-	on_increment: (action: Action) => void
-}
-function TimerController({ type, minutes, on_decrement, on_increment }: TimerControllerProps): React.ReactElement {
-	const DECREMENT_DISPATCH_ACTION_TYPE = `DECREMENT_${type.toLocaleUpperCase()}_MINUTES` as Action["type"];
-	const INCREMENT_DISPATCH_ACTION_TYPE = `INCREMENT_${type.toLocaleUpperCase()}_MINUTES` as Action["type"];
-
-	const emit_decrement = (): void => on_decrement({ "type": DECREMENT_DISPATCH_ACTION_TYPE });
-	const emit_increment = (): void => on_increment({ "type": INCREMENT_DISPATCH_ACTION_TYPE });
-
-	return (
-		<div id={`${type}-timer`}>
-			<div id={`${type}-label`}>Break Timer</div>
-			<div id={`${type}-length`}>{minutes}</div>
-			<button id={`${type}-decrement`} onClick={emit_decrement}>v</button>
-			<button id={`${type}-increment`} onClick={emit_increment}>^</button>
-		</div>
-	);
 }
 
 function App(): React.ReactElement {
@@ -74,12 +53,12 @@ function App(): React.ReactElement {
 				on_decrement={dispatch}
 				on_increment={dispatch}
 			/>
-			<div id="session-timer">
-				<div id="session-label">Session Timer</div>
-				<div id="session-length">{session_minutes}</div>
-				<button id="session-decrement" onClick={(): void => dispatch({ "type": "DECREMENT_SESSION_MINUTES" })}>v</button>
-				<button id="session-increment" onClick={(): void => dispatch({ "type": "INCREMENT_SESSION_MINUTES" })}>^</button>
-			</div>
+			<TimerController
+				type="session"
+				minutes={session_minutes}
+				on_decrement={dispatch}
+				on_increment={dispatch}
+			/>
 			<div id="timer">
 				<div id="timer-label">{timer_playing[0].toLocaleUpperCase() + timer_playing.substring(1)}</div>
 				<div id="time-left">{format_to_two_digits(running_minutes ?? session_minutes)}:{format_to_two_digits(seconds)}</div>
