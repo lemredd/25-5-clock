@@ -1,21 +1,10 @@
 import { useReducer, useEffect } from "react";
 
+import { ACTION_TYPES } from "./constants";
+
 import "./App.css";
 
 import alarm from "/alarm.wav";
-
-const ACTION_TYPES = [
-	"INCREMENT_BREAK_MINUTES",
-	"DECREMENT_BREAK_MINUTES",
-	"INCREMENT_SESSION_MINUTES",
-	"DECREMENT_SESSION_MINUTES",
-	"PLAY",
-	"PAUSE",
-	"SWITCH_TIMER",
-	"DECREMENT_RUNNING_MINUTES",
-	"DECREMENT_SECONDS",
-	"RESET_ALL"
-] as const;
 
 interface Action {
 	type: typeof ACTION_TYPES[number]
