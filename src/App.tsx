@@ -50,14 +50,12 @@ function App(): React.ReactElement {
 			<TimerController
 				type="break"
 				minutes={break_minutes}
-				on_decrement={dispatch}
-				on_increment={dispatch}
+				on_change={dispatch}
 			/>
 			<TimerController
 				type="session"
 				minutes={session_minutes}
-				on_decrement={dispatch}
-				on_increment={dispatch}
+				on_change={dispatch}
 			/>
 			<div id="timer">
 				<div id="timer-label">{timer_playing[0].toLocaleUpperCase() + timer_playing.substring(1)}</div>
