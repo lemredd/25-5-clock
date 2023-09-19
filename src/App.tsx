@@ -1,5 +1,7 @@
 import { useReducer, useEffect } from "react";
 
+import type { Action } from "./types.ts";
+
 import { INITIAL_STATES } from "./constants";
 
 import store from "./store.ts";
@@ -8,18 +10,8 @@ import "./App.css";
 
 import alarm from "/alarm.wav";
 
-function App(): React.ReactElement {
-	const [
-		{
-			break_minutes, session_minutes,
-			running_minutes, seconds,
-			timer_status, timer_playing
-		},
-		dispatch
-	] = useReducer(store, INITIAL_STATES);
-	const format_to_two_digits =
-		(number_to_format: number): number | string => number_to_format >= 10 ? number_to_format : `0${number_to_format}`;
-
+function useTimerWatcher(timer_status: string, seconds: number, dispatch: React.Dispatch<Action>): void {
+	/* eslint-disable react-hooks/exhaustive-deps */
 	useEffect(() => {
 		let count_down: NodeJS.Timer;
 		
@@ -31,7 +23,25 @@ function App(): React.ReactElement {
 
 	useEffect(() => {
 		if (seconds === 59) dispatch({ "type": "DECREMENT_RUNNING_MINUTES" });
-	}, [seconds]); // eslint-disable-line react-hooks/exhaustive-deps
+	}, [seconds]);
+	/* eslint-enable react-hooks/exhaustive-deps */
+}
+
+function App(): React.ReactElement {
+	const [
+		{
+			break_minutes, session_minutes,
+			running_minutes, seconds,
+			timer_status, timer_playing
+		},
+		dispatch
+	] = useReducer(store, INITIAL_STATES);
+	useTimerWatcher(timer_status, seconds, dispatch);
+
+	const format_to_two_digits =
+		(number_to_format: number): number | string => number_to_format >= 10
+			? number_to_format
+			: `0${number_to_format}`;
 
 	return (
 		<>
