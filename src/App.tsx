@@ -64,12 +64,12 @@ function App(): React.ReactElement {
 
 	return (
 		<>
-			<div id="break-timer">
-				<div id="break-label">Break Timer</div>
-				<div id="break-length">{break_minutes}</div>
-				<button id="break-decrement" onClick={(): void => dispatch({ "type": "DECREMENT_BREAK_MINUTES" })}>v</button>
-				<button id="break-increment"onClick={(): void => dispatch({ "type": "INCREMENT_BREAK_MINUTES" })}>^</button>
-			</div>
+			<TimerController
+				type="break"
+				minutes={break_minutes}
+				on_decrement={(type): void => dispatch({ type })}
+				on_increment={(type): void => dispatch({ type })}
+			/>
 			<div id="session-timer">
 				<div id="session-label">Session Timer</div>
 				<div id="session-length">{session_minutes}</div>
