@@ -34,10 +34,14 @@ interface TimerControllerProps {
 	on_increment: (type: Action["type"]) => void
 }
 function TimerController({ type, minutes, on_decrement, on_increment }: TimerControllerProps): React.ReactElement {
+	const DECREMENT_DISPATCH_ACTION_TYPE = `DECREMENT_${type.toLocaleUpperCase()}_MINUTES` as Action["type"];
+	const INCREMENT_DISPATCH_ACTION_TYPE = `INCREMENT_${type.toLocaleUpperCase()}_MINUTES` as Action["type"];
 	return (
 		<div id={`${type}-timer`}>
 			<div id={`${type}-label`}>Break Timer</div>
 			<div id={`${type}-length`}>{minutes}</div>
+			<button id={`${type}-decrement`} onClick={(): void => on_decrement(DECREMENT_DISPATCH_ACTION_TYPE)}>v</button>
+			<button id={`${type}-increment`} onClick={(): void => on_increment(INCREMENT_DISPATCH_ACTION_TYPE)}>^</button>
 		</div>
 	);
 }
