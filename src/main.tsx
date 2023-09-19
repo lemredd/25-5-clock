@@ -1,10 +1,9 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App.tsx'
-import './index.css'
+import ReactDOM from "react-dom";
 
-ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-)
+import App from "./App";
+
+import "./index.css";
+
+// https://github.com/freeCodeCamp/freeCodeCamp/issues/45922
+// eslint-disable-next-line
+ReactDOM.render(<App />,  document.getElementById("root"));
