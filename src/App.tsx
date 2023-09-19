@@ -34,6 +34,12 @@ interface TimerControllerProps {
 	on_increment: (type: Action["type"]) => void
 }
 function TimerController({ type, minutes, on_decrement, on_increment }: TimerControllerProps): React.ReactElement {
+	return (
+		<div id={`${type}-timer`}>
+			<div id={`${type}-label`}>Break Timer</div>
+			<div id={`${type}-length`}>{minutes}</div>
+		</div>
+	);
 }
 
 function App(): React.ReactElement {
