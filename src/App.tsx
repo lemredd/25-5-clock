@@ -27,6 +27,15 @@ function useTimerWatcher(timer_status: string, seconds: number, dispatch: React.
 	/* eslint-enable react-hooks/exhaustive-deps */
 }
 
+interface TimerControllerProps {
+	type: "break" | "session"
+	minutes: number
+	on_decrement: (type: Action["type"]) => void
+	on_increment: (type: Action["type"]) => void
+}
+function TimerController({ type, minutes, on_decrement, on_increment }: TimerControllerProps): React.ReactElement {
+}
+
 function App(): React.ReactElement {
 	const [
 		{
