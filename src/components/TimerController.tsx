@@ -15,7 +15,7 @@ export default function TimerController({ type, minutes, on_decrement, on_increm
 
 	return (
 		<div id={`${type}-timer`}>
-			<div id={`${type}-label`}>Break Timer</div>
+			<div id={`${type}-label`}>{type[0].toLocaleUpperCase() + type.substring(1)} Timer</div>
 			<div id={`${type}-length`}>{minutes}</div>
 			<button id={`${type}-decrement`} onClick={emit_decrement}>v</button>
 			<button id={`${type}-increment`} onClick={emit_increment}>^</button>
