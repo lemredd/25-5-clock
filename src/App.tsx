@@ -41,11 +41,6 @@ function App(): React.ReactElement {
 	] = useReducer(store, INITIAL_STATES);
 	useTimerWatcher(timer_status, seconds, dispatch);
 
-	const format_to_two_digits =
-		(number_to_format: number): number | string => number_to_format >= 10
-			? number_to_format
-			: `0${number_to_format}`;
-
 	return (
 		<>
 			<TimerController
