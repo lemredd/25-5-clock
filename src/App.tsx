@@ -6,6 +6,7 @@ import { INITIAL_STATES } from "./constants";
 
 import store from "./store.ts";
 
+import Timer from "./components/Timer.tsx";
 import TimerController from "./components/TimerController.tsx";
 
 import "./App.css";
@@ -57,10 +58,12 @@ function App(): React.ReactElement {
 				minutes={session_minutes}
 				on_change={dispatch}
 			/>
-			<div id="timer">
-				<div id="timer-label">{timer_playing[0].toLocaleUpperCase() + timer_playing.substring(1)}</div>
-				<div id="time-left">{format_to_two_digits(running_minutes ?? session_minutes)}:{format_to_two_digits(seconds)}</div>
-			</div>
+			<Timer { ...{
+				timer_playing,
+				running_minutes,
+				session_minutes,
+				seconds
+			} } />
 			<div id="controls">
 				<button
 					id="start_stop"
