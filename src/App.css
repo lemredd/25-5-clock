@@ -4,3 +4,30 @@
 	padding: 2rem;
 	text-align: center;
 }
+
+.timer-controller {
+	display: grid;
+	grid-template-columns: 60% 40%;
+	grid-template-areas:
+		"label label"
+		"length increment"
+		"length decrement";
+}
+.timer-controller .timer-label {
+	grid-area: label;
+	text-align: left;
+}
+.timer-controller .timer-length {
+	grid-area: length;
+	align-self: center;
+}
+.timer-controller button {
+	padding: 0;
+}
+.timer-controller .timer-decrement {
+	grid-area: decrement;
+	transform: rotate(180deg);
+}
+.timer-controller .timer-increment {
+	grid-area: increment;
+}
