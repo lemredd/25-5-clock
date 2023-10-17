@@ -12,9 +12,11 @@ export default function TimerController({ type, minutes, on_change }: TimerContr
 	const emit_decrement = (): void => on_change({ "type": DECREMENT_DISPATCH_ACTION_TYPE });
 	const emit_increment = (): void => on_change({ "type": INCREMENT_DISPATCH_ACTION_TYPE });
 
+	const formatted_type = type[0].toLocaleUpperCase() + type.substring(1);
+
 	return (
 		<div id={`${type}-timer`} className="timer-controller">
-			<div id={`${type}-label`} className="timer-label">{type[0].toLocaleUpperCase() + type.substring(1)} Timer</div>
+			<div id={`${type}-label`} className="timer-label">{formatted_type} Timer</div>
 			<div id={`${type}-length`} className="timer-length">{minutes}</div>
 			<button id={`${type}-decrement`} onClick={emit_decrement} className="timer-decrement">^</button>
 			<button id={`${type}-increment`} onClick={emit_increment} className="timer-increment">^</button>
