@@ -49,3 +49,12 @@
 #timer #time-left {
 	font-family: "DS-Digital";
 }
+@media screen and (min-width: 640px) {
+	#time-left {
+		--FONT_SIZE: 30rem;
+		--MARGIN_DIVISOR: 2.5;
+		--MARGIN_Y: calc(var(--FONT_SIZE) / var(--MARGIN_DIVISOR));
+		font-size: var(--FONT_SIZE);
+		margin: calc(var(--MARGIN_Y) * -1) 0;
+	}
+}
