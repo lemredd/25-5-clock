@@ -11,6 +11,7 @@
 	gap: 1em;
 }
 .timer-controller {
+	flex-grow: 1;
 	display: grid;
 	grid-template-columns: 90% 10%;
 	grid-template-areas:
