@@ -42,16 +42,18 @@ function App(): React.ReactElement {
 
 	return (
 		<>
-			<TimerController
-				type="break"
-				minutes={break_minutes}
-				on_change={dispatch}
-			/>
-			<TimerController
-				type="session"
-				minutes={session_minutes}
-				on_change={dispatch}
-			/>
+			<div className="timer-controllers">
+				<TimerController
+					type="break"
+					minutes={break_minutes}
+					on_change={dispatch}
+				/>
+				<TimerController
+					type="session"
+					minutes={session_minutes}
+					on_change={dispatch}
+				/>
+			</div>
 			<Timer { ...{
 				timer_playing,
 				running_minutes,
