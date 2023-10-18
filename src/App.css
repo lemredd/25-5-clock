@@ -6,6 +6,10 @@
 	padding: 2rem;
 }
 
+.timer-controllers {
+	display: flex;
+	gap: 1em;
+}
 .timer-controller {
 	display: grid;
 	grid-template-columns: 90% 10%;
