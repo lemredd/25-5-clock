@@ -54,13 +54,13 @@ function App(): React.ReactElement {
 					on_change={dispatch}
 				/>
 			</div>
+			<Controls timer_status={timer_status} on_click={dispatch} />
 			<Timer { ...{
 				timer_playing,
 				running_minutes,
 				session_minutes,
 				seconds
 			} } />
-			<Controls timer_status={timer_status} on_click={dispatch} />
 			<audio id="beep" preload="auto" src={alarm} />
 		</>
 	);
