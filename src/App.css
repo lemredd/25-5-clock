@@ -6,6 +6,9 @@
 	margin: 0 auto;
 	padding: 2rem;
 	height: inherit;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
 }
 
 .timer-controllers {
@@ -36,7 +39,6 @@
 	grid-area: reset;
 	height: max-content;
 }
-
 .timer-controller {
 	flex: 1 0 0;
 	display: grid;
@@ -70,6 +72,12 @@
 	grid-area: increment;
 }
 
+#timer {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
 #timer #time-left {
 	font-family: "DS-Digital";
 		--FONT_SIZE: 35vw;
