@@ -12,6 +12,8 @@
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	-webkit-text-size-adjust: 100%;
+
+	height: 100%;
 }
 
 *, *::before, *::after {
@@ -30,7 +32,7 @@ a:hover {
 body {
 	margin: 0;
 	min-width: 320px;
-	min-height: 100vh;
+	height: inherit;
 }
 
 h1 {
