@@ -14,11 +14,11 @@ export default function Controls({ timer_status, on_click }: Props): React.React
 	});
 
 	return (
-		<div id="controls">
+		<>
 			<button id="start_stop" onClick={emit_status_change}>
 				{ timer_status === "playing" ? "stop" : "start" }
 			</button>
 			<button id="reset" onClick={emit_reset}>reset</button>
-		</div>
+		</>
 	);
 }

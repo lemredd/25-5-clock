@@ -19,7 +19,7 @@ export default function Timer({
 
 	return (
 		<div id="timer">
-			<div id="timer-label">{capitalized_timer_playing}</div>
+			<div id="timer-label">Timer playing: <strong>{capitalized_timer_playing}</strong></div>
 			<div id="time-left">{formatted_minutes}:{formatted_seconds}</div>
 		</div>
 	);

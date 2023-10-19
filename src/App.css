@@ -1,6 +1,101 @@
+@import url("/stylesheet.css");
+
 #root {
+	--MAX_ROOT_WIDTH: 1280px;
 	max-width: 1280px;
 	margin: 0 auto;
 	padding: 2rem;
-	text-align: center;
+	height: inherit;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.timer-controllers {
+	display: grid;
+	grid-template-areas:
+		"break session"
+		"startstop reset";
+	gap: 1em;
+	align-items: flex-end;
+}
+@media screen and (min-width: 640px) {
+	.timer-controllers {
+		grid-template-columns: repeat(4, 150px);
+		grid-template-areas: "break session startstop reset";
+	}
+}
+.break-timer {
+	grid-area: break;
+}
+.session-timer {
+	grid-area: session;
+}
+#start_stop {
+	grid-area: startstop;
+	height: max-content;
+}
+#reset {
+	grid-area: reset;
+	height: max-content;
+}
+.timer-controller {
+	flex: 1 0 0;
+	display: grid;
+	grid-template-columns: 90% 10%;
+	grid-template-areas:
+		"label label"
+		"length increment"
+		"length decrement";
+}
+@media screen and (min-width:640px) {
+	.timer-controller {
+		flex: 0 1 150px;
+	}
+}
+.timer-controller .timer-label {
+	grid-area: label;
+	text-align: left;
+}
+.timer-controller .timer-length {
+	grid-area: length;
+	align-self: center;
+}
+.timer-controller button {
+	padding: 0;
+}
+.timer-controller .timer-decrement {
+	grid-area: decrement;
+	transform: rotate(180deg);
+}
+.timer-controller .timer-increment {
+	grid-area: increment;
+}
+
+#timer {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+#timer #timer-label {
+	font-size: 1.5rem;
+}
+#timer #time-left {
+	--FONT_SIZE: 35vw;
+	--MARGIN_DIVISOR: 3.5;
+	--MARGIN_Y: calc(var(--FONT_SIZE) / var(--MARGIN_DIVISOR));
+
+	position: relative;
+	margin: calc(var(--MARGIN_Y) * -1) auto;
+	width: max-content;
+
+	font-family: "DS-Digital";
+	font-size: var(--FONT_SIZE);
+}
+@media screen and (min-width: 640px) {
+	#time-left {
+		--FONT_SIZE: min(calc(var(--MAX_ROOT_WIDTH) / 2.25), 40vw) !important;
+		margin-left: 0 !important;
+	}
 }
