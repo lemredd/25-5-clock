@@ -9,9 +9,31 @@
 }
 
 .timer-controllers {
-	display: flex;
+	display: grid;
+	grid-template-areas:
+		"break session"
+		"startstop reset";
 	gap: 1em;
 }
+@media screen and (min-width: 640px) {
+	.timer-controllers {
+		grid-template-columns: repeat(4, 150px);
+		grid-template-areas: "break session startstop reset";
+	}
+}
+.break-timer {
+	grid-area: break;
+}
+.session-timer {
+	grid-area: session;
+}
+#start_stop {
+	grid-area: startstop;
+}
+#reset {
+	grid-area: reset;
+}
+
 .timer-controller {
 	flex: 1 0 0;
 	display: grid;
