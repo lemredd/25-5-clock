@@ -78,6 +78,9 @@
 	flex-direction: column;
 	justify-content: center;
 }
+#timer #timer-label {
+	font-size: 1.5rem;
+}
 #timer #time-left {
 	font-family: "DS-Digital";
 		--FONT_SIZE: 35vw;
