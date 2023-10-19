@@ -14,6 +14,7 @@
 		"break session"
 		"startstop reset";
 	gap: 1em;
+	align-items: center;
 }
 @media screen and (min-width: 640px) {
 	.timer-controllers {
@@ -29,9 +30,11 @@
 }
 #start_stop {
 	grid-area: startstop;
+	height: max-content;
 }
 #reset {
 	grid-area: reset;
+	height: max-content;
 }
 
 .timer-controller {
