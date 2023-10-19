@@ -46,13 +46,16 @@
 
 #timer #time-left {
 	font-family: "DS-Digital";
+		--FONT_SIZE: 35vw;
+		--MARGIN_DIVISOR: 3.5;
+		--MARGIN_Y: calc(var(--FONT_SIZE) / var(--MARGIN_DIVISOR));
+		margin: calc(var(--MARGIN_Y) * -1) auto;
+		width: max-content;
+		font-size: var(--FONT_SIZE);
 }
 @media screen and (min-width: 640px) {
 	#time-left {
-		--FONT_SIZE: 30rem;
-		--MARGIN_DIVISOR: 2.5;
-		--MARGIN_Y: calc(var(--FONT_SIZE) / var(--MARGIN_DIVISOR));
-		font-size: var(--FONT_SIZE);
-		margin: calc(var(--MARGIN_Y) * -1) 0;
+		--FONT_SIZE: min(calc(var(--MAX_ROOT_WIDTH) / 2.25), 40vw) !important;
+		margin-left: 0 !important;
 	}
 }
