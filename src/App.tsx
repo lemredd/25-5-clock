@@ -53,8 +53,8 @@ function App(): React.ReactElement {
 					minutes={session_minutes}
 					on_change={dispatch}
 				/>
+				<Controls timer_status={timer_status} on_click={dispatch} />
 			</div>
-			<Controls timer_status={timer_status} on_click={dispatch} />
 			<Timer { ...{
 				timer_playing,
 				running_minutes,
