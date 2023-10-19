@@ -21,9 +21,6 @@
 		"length decrement";
 }
 @media screen and (min-width:640px) {
-	.timer-controllers {
-		justify-content: flex-end;
-	}
 	.timer-controller {
 		flex: 0 1 150px;
 	}
