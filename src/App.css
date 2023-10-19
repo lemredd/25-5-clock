@@ -17,7 +17,7 @@
 		"break session"
 		"startstop reset";
 	gap: 1em;
-	align-items: center;
+	align-items: flex-end;
 }
 @media screen and (min-width: 640px) {
 	.timer-controllers {
@@ -82,13 +82,16 @@
 	font-size: 1.5rem;
 }
 #timer #time-left {
+	--FONT_SIZE: 35vw;
+	--MARGIN_DIVISOR: 3.5;
+	--MARGIN_Y: calc(var(--FONT_SIZE) / var(--MARGIN_DIVISOR));
+
+	position: relative;
+	margin: calc(var(--MARGIN_Y) * -1) auto;
+	width: max-content;
+
 	font-family: "DS-Digital";
-		--FONT_SIZE: 35vw;
-		--MARGIN_DIVISOR: 3.5;
-		--MARGIN_Y: calc(var(--FONT_SIZE) / var(--MARGIN_DIVISOR));
-		margin: calc(var(--MARGIN_Y) * -1) auto;
-		width: max-content;
-		font-size: var(--FONT_SIZE);
+	font-size: var(--FONT_SIZE);
 }
 @media screen and (min-width: 640px) {
 	#time-left {
